@@ -27,5 +27,15 @@ class SlackMessagesFetcherUseCase(slackClient: SlackClient)(implicit ec: Executi
 
         messages
     }
+    /*
+    Alternative solution:
+
+    cache.getOrElse(
+      val result = fetch(channelName)
+      cache = Some(result)
+
+      result
+    )
+     */
   }
 }
