@@ -38,4 +38,15 @@ class SlackMessagesFetcherUseCase(slackClient: SlackClient)(implicit ec: Executi
     )
      */
   }
+
+  /*
+  Another alternative solution:
+
+  def fetchWithCache(channelName: ChannelId): Future[Seq[Message]] = cache match {
+    case Some(fetchResult) => fetchResult
+    case None =>
+      cache = Some(fetch(channelName))
+      fetchWithCache(channelName)
+  }
+  */
 }
