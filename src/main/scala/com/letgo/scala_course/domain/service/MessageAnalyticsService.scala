@@ -8,5 +8,11 @@ class MessageAnalyticsService {
     messages.count(_.userName == userName)
   }
 
-  def groupByUserName(messages: Seq[UserMessage]): Map[UserName, Seq[Message]] = Map()
+  def groupByUserName(messages: Seq[UserMessage]): Map[UserName, Seq[Message]] = {
+    messages
+      .groupBy(_.userName)
+      .map(userMessagesTuple => (
+        userMessagesTuple._1, userMessagesTuple._2.map(_.message)
+      ))
+  }
 }
