@@ -11,8 +11,6 @@ class MessageAnalyticsService {
   def groupByUserName(messages: Seq[UserMessage]): Map[UserName, Seq[Message]] = {
     messages
       .groupBy(_.userName)
-      .map(userMessagesTuple => (
-        userMessagesTuple._1, userMessagesTuple._2.map(_.message)
-      ))
+      .mapValues(_.map(_.message))
   }
 }
